@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DishCard from '../components/DishCard.astro';
+import Icon from '../components/Icon.astro';
+import { dishes, reviews, faqs, site } from '../data/site.ts';
+---
+<BaseLayout title="Wood-fired kitchen in RiNo" description="EMBER is a wood-fired kitchen in Denver. Oak oven, open hearth, seasonal menu. Reserve a table.">
+  <!-- HERO -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-10 md:pt-14 pb-10 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 items-center">
+    <div>
+      <p class="text-[13px] font-bold text-cream/50">Wood-fired kitchen · RiNo, Denver</p>
+      <h1 class="font-display text-[46px] sm:text-6xl lg:text-[72px] leading-[1.0] mt-3 pb-2">Everything here has met <em class="text-ember not-italic font-display italic">oak fire.</em></h1>
+      <p class="mt-4 text-[17px] text-cream/65 leading-relaxed max-w-[44ch]">One oven, one hearth, no gas. Seasonal cooking with smoke as a seasoning, not a stunt.</p>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a href="/reserve" class="btn-primary inline-flex items-center gap-2 bg-ember text-char font-extrabold px-7 py-3.5 rounded-full hover:bg-cream transition">Reserve a table <Icon name="arrow" /></a>
+        <a href="/menu" class="btn-ghost inline-flex items-center px-7 py-3.5 rounded-full border border-cream/20 text-cream font-bold hover:bg-coal transition">See the menu</a>
+      </div>
+      <p class="mt-5 text-sm flex items-center gap-2"><span class="inline-flex gap-0.5 text-ember" aria-hidden="true"><Icon name="star" /><Icon name="star" /><Icon name="star" /><Icon name="star" /><Icon name="star" /></span><strong>{site.rating}</strong><span class="text-cream/55">from {site.reviewCount} guests. Weekend tables go fast.</span></p>
+    </div>
+    <div class="relative">
+      <div class="rounded-[22px] overflow-hidden aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5] bg-coal" style="box-shadow: 0 24px 70px -24px rgba(0,0,0,.7)">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1000&q=80&auto=format&fit=crop" alt="Plated dish in the EMBER dining room" width="1000" height="1200" fetchpriority="high" decoding="async" class="w-full h-full object-cover" />
+      </div>
+      <div class="absolute -bottom-5 left-4 sm:left-6 bg-coal border border-line rounded-2xl px-5 py-4 flex items-center gap-4" style="box-shadow: 0 14px 34px -18px rgba(0,0,0,.7)">
+        <p class="font-display text-[26px] leading-none font-semibold tabular-nums text-ember">100%</p>
+        <p class="text-xs text-cream/55 leading-snug">cooked over oak<br />no gas in the kitchen</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDIBILITY ROW -->
+  <section class="border-y border-line bg-coal/60" aria-label="Good to know">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 grid grid-cols-2 lg:grid-cols-4 gap-4 text-[14px] font-semibold text-cream/80">
+      <span>Open hearth + oak oven</span>
+      <span>Walk-ins at bar + counter</span>
+      <span>Vegetarian third of menu</span>
+      <span>Corkage $35, waived for club</span>
+    </div>
+  </section>
+
+  <!-- MENU PREVIEW -->
+  <section id="menu" class="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-20">
+    <div class="max-w-[62ch]">
+      <h2 class="reveal font-display text-4xl sm:text-[48px] sm:leading-[1.06]">The menu follows the wood pile.</h2>
+      <p class="reveal mt-3 text-cream/60" style="--d:80ms">Ten dishes we would defend in an argument. Filter by craving, then come hungry.</p>
+    </div>
+    <div class="mt-6 flex flex-wrap gap-2" id="filters" role="group" aria-label="Filter dishes by category">
+      {['All','Starters','Wood-Fired','Mains','Desserts','Bar'].map((c,i) => (
+        <button data-filter={c} aria-pressed={i===0 ? 'true' : 'false'} class={`filter-btn px-5 py-2.5 rounded-full text-sm font-bold border transition min-h-[44px] ${i===0 ? 'bg-ember text-char border-ember' : 'border-cream/20 text-cream/85 hover:bg-coal'}`}>{c}</button>
+      ))}
+    </div>
+    <div id="grid" class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {dishes.slice(0,8).map((d,i) => <div class="reveal" style={`--d:${(i%4)*70}ms`} data-category={d.category}><DishCard d={d} /></div>)}
+    </div>
+    <a href="/menu" class="mt-8 inline-flex items-center gap-2 font-bold text-ember hover:text-cream transition">Full menu with bar list <Icon name="arrow" /></a>
+  </section>
+
+  <!-- STORY SPLIT -->
+  <section class="bg-coal border-y border-line">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-20 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] items-center">
+      <div class="rounded-[22px] overflow-hidden aspect-[4/3] bg-char">
+        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1000&q=80&auto=format&fit=crop" alt="Candlelit dining room at EMBER" loading="lazy" decoding="async" width="1000" height="750" class="w-full h-full object-cover" />
+      </div>
+      <div class="reveal">
+        <h2 class="font-display text-4xl sm:text-[48px] sm:leading-[1.06]">Fire first, everything else second.</h2>
+        <div class="mt-8 border-t border-line">
+          <div class="py-5 border-b border-line"><p class="font-bold">White oak, nothing else</p><p class="text-sm text-cream/60 mt-1">Split daily, burned down to coals. Gas never enters the building.</p></div>
+          <div class="py-5 border-b border-line"><p class="font-bold">Menu rewritten with the seasons</p><p class="text-sm text-cream/60 mt-1">Short menu, changed often. If it is not excellent today, it is off.</p></div>
+          <div class="py-5 border-b border-line"><p class="font-bold">Room built for conversation</p><p class="text-sm text-cream/60 mt-1">Low light, real volume control. You can hear your table.</p></div>
+        </div>
+        <a href="/about" class="mt-6 inline-flex items-center gap-2 bg-cream text-char font-extrabold px-6 py-3 rounded-full text-sm">Our story <Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE PLATES -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-20">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div class="max-w-[58ch]">
+        <h2 class="reveal font-display text-4xl sm:text-[48px]">Plates people cross town for.</h2>
+        <p class="reveal mt-2 text-cream/55 text-[15px]" style="--d:80ms">Sample photography for layout. The fire is real, the menu changes with the market.</p>
+      </div>
+      <a href="/gallery" class="text-sm font-bold underline underline-offset-4 text-cream">See the room</a>
+    </div>
+    <ul class="reveal mt-8 grid grid-cols-2 lg:grid-cols-4 gap-5">
+      {[['45-Day Ribeye','Oak-fired, marrow butter','https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80&auto=format&fit=crop'],['Cedar Salmon','Brown butter, burnt lemon','https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80&auto=format&fit=crop'],['Smoked Old Fashioned','Trapped oak smoke','https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=600&q=80&auto=format&fit=crop'],['Basque Cheesecake','Smoked honey','https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&q=80&auto=format&fit=crop']].map(r => (
+        <li class="bg-coal border border-line rounded-[20px] overflow-hidden">
+          <img src={r[2]} alt={r[0]} loading="lazy" decoding="async" width="600" height="600" class="aspect-square w-full object-cover" />
+          <div class="p-4"><p class="font-bold text-[15px]">{r[0]}</p><p class="text-xs text-cream/55">{r[1]}</p></div>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- NUMBERS -->
+  <section class="bg-coal/60 border-y border-line">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 grid grid-cols-2 lg:grid-cols-4 gap-6">
+      {[['14','','cord of oak a year',0],['48','','seats, room stays quiet',0],['4.8','','average guest rating',1],['7','','years on Blake Street',0]].map(s => (
+        <div><p class="font-display text-4xl md:text-[44px] font-semibold tabular-nums text-cream"><span data-count={s[0]} data-suffix={s[1]} data-decimals={s[3]}>0</span></p><p class="text-sm text-cream/55 mt-1">{s[2]}</p></div>
+      ))}
+    </div>
+  </section>
+
+  <!-- EVENING STEPS + CLUB -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-20 grid gap-10 lg:grid-cols-2">
+    <div class="reveal">
+      <h2 class="font-display text-3xl sm:text-[38px]">Your evening, in three moves.</h2>
+      <ol class="mt-6 border-t border-line">
+        {[['1','Reserve','Book the dining room, or walk in for bar and hearth counter.'],['2','Settle','Bread from the oven, something smoked from the bar.'],['3','Savor','Fire does the rest. Dessert is not optional, allegedly.']].map(s => (
+          <li class="flex gap-5 py-5 border-b border-line"><span class="w-10 h-10 shrink-0 grid place-items-center rounded-full bg-ember text-char font-extrabold tabular-nums" aria-hidden="true">{s[0]}</span><div><p class="font-bold">{s[1]}</p><p class="text-sm text-cream/60">{s[2]}</p></div></li>
+        ))}
+      </ol>
+    </div>
+    <div class="reveal bg-ember text-char rounded-[22px] p-8 sm:p-10" style="--d:120ms">
+      <h3 class="font-display text-4xl">Tasting Club, four courses.</h3>
+      <p class="mt-2 text-char/75 text-[15px] font-medium">A monthly four course menu with pairings, first pours of new bottles, zero corkage. Cancel anytime.</p>
+      <p class="mt-6 font-display text-5xl tabular-nums">$95<span class="text-lg font-sans">/seat</span></p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="/tasting-club" class="bg-char text-cream font-bold px-6 py-3 rounded-full text-sm">Join the club</a>
+        <a href="/reserve" class="border border-char/30 px-6 py-3 rounded-full text-sm font-extrabold">Book a table</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="marquee overflow-hidden py-8 border-y border-line bg-coal" aria-label="Guest reviews">
+    <h2 class="text-center font-display text-2xl sm:text-[30px]">Regulars, in their words</h2>
+    <p class="text-center text-sm text-cream/45 mt-1 mb-6">Sample reviews for layout</p>
+    <div class="flex overflow-hidden">
+      <div class="marquee-track flex gap-4 pr-4 shrink-0">
+        {[...reviews, ...reviews].map(r => (
+          <figure class="w-[300px] shrink-0 bg-char border border-line rounded-2xl p-5">
+            <div class="inline-flex gap-0.5 text-ember" aria-label="5 out of 5 stars"><Icon name="star" /><Icon name="star" /><Icon name="star" /><Icon name="star" /><Icon name="star" /></div>
+            <blockquote class="mt-2 text-sm leading-relaxed text-cream/85">&ldquo;{r.text}&rdquo;</blockquote>
+            <figcaption class="mt-3 text-xs font-bold">{r.name} <span class="font-normal text-cream/50">· {r.context}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-14 md:py-20">
+    <h2 class="reveal font-display text-3xl sm:text-[38px] text-center">Before you come hungry</h2>
+    <div class="mt-8 border-t border-line">
+      {faqs.map(f => (
+        <details class="group py-5 border-b border-line">
+          <summary class="flex justify-between items-center gap-4 cursor-pointer font-bold list-none min-h-[44px] text-cream">{f.q}<span class="ml-4 w-8 h-8 shrink-0 grid place-items-center rounded-full border border-cream/20 group-open:rotate-45 transition text-xl leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-[15px] text-cream/65 leading-relaxed pr-10">{f.a}</p>
+        </details>
+      ))}
+    </div>
+    <div class="mt-10 text-center bg-coal border border-line rounded-[22px] p-8 sm:p-10">
+      <h3 class="font-display text-3xl">Weekend tables go first.</h3>
+      <p class="text-[15px] text-cream/60 mt-1">Two minutes to book. Hearth counter held for walk-ins.</p>
+      <a href="/reserve" class="mt-5 inline-block bg-ember text-char font-extrabold px-8 py-3.5 rounded-full">Reserve a table</a>
+    </div>
+  </section>
+
+<script>
+  const btns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('#grid > div');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => { x.className = 'filter-btn px-5 py-2.5 rounded-full text-sm font-bold border transition min-h-[44px] border-cream/20 text-cream/85 hover:bg-coal'; x.setAttribute('aria-pressed','false'); });
+    b.className = 'filter-btn px-5 py-2.5 rounded-full text-sm font-bold border transition min-h-[44px] bg-ember text-char border-ember';
+    b.setAttribute('aria-pressed','true');
+    const f = (b as HTMLElement).dataset.filter;
+    cards.forEach(c => {
+      const show = f === 'All' || (c as HTMLElement).dataset.category === f;
+      (c as HTMLElement).style.display = show ? '' : 'none';
+    });
+  }));
+</script>
+</BaseLayout>

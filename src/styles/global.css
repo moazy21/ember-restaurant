@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface: #141210;
+  --ink: #F4EDE1;
+  --muted: rgba(244, 237, 225, 0.66);
+  --line: #2B261F;
+  --accent: #D9622B;
+}
+
+html { scroll-behavior: smooth; }
+body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; background: #141210; }
+
+::selection { background: #D9622B; color: #141210; }
+
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid #D9622B;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.skip-link { position: absolute; left: -999px; top: 0; }
+.skip-link:focus { left: 12px; top: 12px; z-index: 100; background: #D9622B; color: #141210; padding: 10px 16px; border-radius: 999px; font-size: 14px; font-weight: 700; }
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s cubic-bezier(0.16,1,0.3,1), transform .65s cubic-bezier(0.16,1,0.3,1); transition-delay: var(--d, 0ms); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .marquee-track { animation: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee 36s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+.dish-card img { transition: transform .7s cubic-bezier(0.16,1,0.3,1); }
+.dish-card:hover img { transform: scale(1.04); }
+.dish-card { transition: transform .35s cubic-bezier(0.16,1,0.3,1), box-shadow .35s, border-color .35s; }
+.dish-card:hover { transform: translateY(-4px); box-shadow: 0 18px 44px -20px rgba(0,0,0,.7); border-color: #4A4237; }
+.dish-card:active { transform: translateY(0) scale(0.99); }
+
+.btn-primary, .btn-ghost { transition: transform .18s ease, background-color .25s ease; }
+.btn-primary:active, .btn-ghost:active { transform: translateY(1px) scale(0.98); }

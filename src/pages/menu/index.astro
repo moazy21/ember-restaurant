@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DishCard from '../../components/DishCard.astro';
+import { dishes } from '../../data/site.ts';
+---
+<BaseLayout title="Menu" description="Wood-fired menu: starters, oak-fired mains, hand-cut pasta, burnt desserts and smoked cocktails.">
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-10 md:pt-16">
+    <h1 class="font-display text-4xl sm:text-5xl lg:text-[58px] lg:leading-[1.05] max-w-[18ch]">Short menu. Changed often. Argued over daily.</h1>
+    <p class="mt-3 text-cream/60 max-w-[55ch]">Sample menu for layout. The oven decides the final word each evening.</p>
+    <div class="mt-6 flex flex-wrap gap-2" id="filters" role="group" aria-label="Filter dishes by category">
+      {['All','Starters','Wood-Fired','Mains','Desserts','Bar'].map((c,i) => (
+        <button data-filter={c} aria-pressed={i===0 ? 'true' : 'false'} class={`filter-btn px-5 py-2.5 rounded-full text-sm font-bold border transition min-h-[44px] ${i===0 ? 'bg-ember text-char border-ember' : 'border-cream/20 text-cream/85'}`}>{c}</button>
+      ))}
+    </div>
+    <div id="grid" class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 pb-4">
+      {dishes.map(d => <div data-category={d.category}><DishCard d={d} /></div>)}
+    </div>
+  </section>
+<script>
+  const btns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('#grid > div');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => { x.className = 'filter-btn px-5 py-2.5 rounded-full text-sm font-bold border transition min-h-[44px] border-cream/20 text-cream/85'; x.setAttribute('aria-pressed','false'); });
+    b.className = 'filter-btn px-5 py-2.5 rounded-full text-sm font-bold border transition min-h-[44px] bg-ember text-char border-ember';
+    b.setAttribute('aria-pressed','true');
+    const f = (b as HTMLElement).dataset.filter;
+    cards.forEach(c => { (c as HTMLElement).style.display = (f === 'All' || (c as HTMLElement).dataset.category === f) ? '' : 'none'; });
+  }));
+</script>
+</BaseLayout>

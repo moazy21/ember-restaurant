@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+<BaseLayout title="About" description="One oak oven, one open hearth, no gas. The story of EMBER in RiNo, Denver.">
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-10 md:pt-16 grid gap-8 lg:grid-cols-2 items-center">
+    <div>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-[58px] lg:leading-[1.05]">Built around one oven.</h1>
+      <p class="mt-4 text-cream/65 max-w-[50ch]">EMBER started with a question: what if the whole kitchen ran on oak and patience? Seven years later the answer seats 48 a night on Blake Street.</p>
+      <ul class="mt-6 space-y-3 text-[15px] font-semibold">
+        <li class="flex items-center gap-2.5"><span class="w-6 h-6 grid place-items-center rounded-full bg-ember/20 text-ember"><Icon name="check" size={13} /></span>White oak only, split daily on site</li>
+        <li class="flex items-center gap-2.5"><span class="w-6 h-6 grid place-items-center rounded-full bg-ember/20 text-ember"><Icon name="check" size={13} /></span>Menu rewritten with the market, not the calendar</li>
+        <li class="flex items-center gap-2.5"><span class="w-6 h-6 grid place-items-center rounded-full bg-ember/20 text-ember"><Icon name="check" size={13} /></span>Dining room kept quiet enough to talk</li>
+      </ul>
+    </div>
+    <div class="rounded-[22px] overflow-hidden aspect-[4/3] bg-coal">
+      <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1000&q=80&auto=format&fit=crop" alt="Tables set in the EMBER dining room" width="1000" height="750" decoding="async" class="w-full h-full object-cover" />
+    </div>
+  </section>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-14 grid gap-8 md:grid-cols-2 items-center">
+    <div class="rounded-[22px] overflow-hidden aspect-square max-w-md w-full mx-auto bg-coal">
+      <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80&auto=format&fit=crop" alt="Flames inside the wood oven" loading="lazy" decoding="async" width="800" height="800" class="w-full h-full object-cover" />
+    </div>
+    <div>
+      <h2 class="font-display text-3xl sm:text-4xl">Chef June Park</h2>
+      <p class="text-sm text-cream/50 mt-1">Chef and co-founder, 12 years over live fire</p>
+      <p class="mt-4 font-display text-2xl italic leading-relaxed pb-1">&ldquo;Fire is honest. It tells you immediately when you are showing off.&rdquo;</p>
+      <p class="mt-3 text-[15px] text-cream/65">June ran hearth stations in Charleston and Copenhagen before building EMBER around a single oven and a short menu.</p>
+      <a href="/reserve" class="mt-6 inline-block bg-ember text-char font-extrabold px-7 py-3 rounded-full text-sm">Eat her cooking</a>
+    </div>
+  </section>
+</BaseLayout>

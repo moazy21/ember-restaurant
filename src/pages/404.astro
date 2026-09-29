@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Page not found" description="The page you requested does not exist.">
+  <section class="max-w-2xl mx-auto px-4 py-24 text-center">
+    <p class="font-display text-7xl text-ember">404</p>
+    <h1 class="font-display text-3xl mt-4">That table is not on the floor plan.</h1>
+    <p class="text-cream/60 mt-2">Try the menu, or book a real table instead.</p>
+    <div class="mt-6 flex justify-center gap-3 flex-wrap">
+      <a href="/" class="bg-ember text-char font-extrabold px-7 py-3 rounded-full">Home</a>
+      <a href="/menu" class="border border-cream/20 text-cream font-bold px-7 py-3 rounded-full">Menu</a>
+    </div>
+  </section>
+</BaseLayout>
