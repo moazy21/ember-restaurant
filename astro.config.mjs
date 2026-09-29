@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://ember-restaurant.example.com',
+  site: 'https://ember-restaurant-two.vercel.app',
   integrations: [tailwind(), sitemap()],
   output: 'static'
 });

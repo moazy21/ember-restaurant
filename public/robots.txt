@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ember-restaurant.example.com/sitemap-index.xml
+Sitemap: https://ember-restaurant-two.vercel.app/sitemap-index.xml
